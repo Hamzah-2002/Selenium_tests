@@ -1,87 +1,125 @@
-# Airbnb Search Automation Tests
+# Selenium Web Testing Project with CI/CD
 
-This repository contains automated test cases for Airbnb's search functionality using Selenium WebDriver and Python. The tests are integrated with GitHub Actions for continuous integration and continuous deployment (CI/CD).
+This project demonstrates web application testing using Selenium with Python and includes CI/CD release management through GitHub Actions.
 
 ## Project Structure
 
 ```
 .
-├── .github/
-│   └── workflows/
-│       └── test.yml          # GitHub Actions workflow configuration
-├── test_airbnb_search.py     # Main test file containing test cases
-├── requirements.txt          # Project dependencies
-└── README.md                 # Project documentation
+├── tests/
+│   ├── test_base.py      # Base test class with common setup/teardown
+│   └── test_amazon.py    # Amazon website test cases
+├── test_results/         # Test reports and screenshots
+├── requirements.txt      # Project dependencies
+├── pytest.ini           # Pytest configuration
+└── .github/
+    └── workflows/       # GitHub Actions workflows
 ```
+
+## Features
+
+- Automated web testing using Selenium
+- Comprehensive test cases for Amazon website
+- Detailed logging and reporting
+- Screenshot capture for visual verification
+- CI/CD pipeline with GitHub Actions
+- Automated release management
 
 ## Prerequisites
 
-- Python 3.9 or higher
-- Chrome browser
+- Python 3.11 or higher
+- Chrome browser installed
 - Git
 
-## Installation
+## Setup
 
 1. Clone the repository:
-```bash
-git clone https://github.com/Hamzah-2002/Selenium_tests.git
-cd Selenium_tests
-```
+   ```bash
+   git clone https://github.com/Hamzah-2002/Selenium_tests1.git
+   cd Selenium_tests1
+   ```
 
-2. Install dependencies:
-```bash
-pip install -r requirements.txt
-```
+2. Create and activate virtual environment:
+   ```bash
+   # Create virtual environment
+   python -m venv venv
 
-## Running Tests Locally
+   # Activate virtual environment
+   # On Windows:
+   venv\Scripts\activate
+   # On Unix or MacOS:
+   source venv/bin/activate
+   ```
 
-To run the tests locally:
+3. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-```bash
-pytest test_airbnb_search.py --html=report.html
-```
+## Running Tests
 
-This will generate a detailed HTML report in the `report.html` file.
+### Manual Execution
 
-## Test Cases
+1. Run all tests:
+   ```bash
+   pytest
+   ```
 
-The test suite includes the following test cases:
+2. Run specific test file:
+   ```bash
+   pytest tests/test_amazon.py
+   ```
 
-1. **Basic Search Test**
-   - Opens Airbnb website
-   - Verifies homepage loading
-   - Performs location search
-   - Selects dates
-   - Modifies guest count
-   - Executes search
+3. Run specific test case:
+   ```bash
+   pytest tests/test_amazon.py::TestAmazon::test_search_product
+   ```
 
-2. **Search Results Validation**
-   - Verifies search results page
-   - Validates search parameters
-   - Checks result count
+4. Run with detailed logging:
+   ```bash
+   pytest --log-cli-level=DEBUG
+   ```
 
-3. **Filter Tests**
-   - Price range filtering
-   - Property type filtering
-   - Amenities filtering
+### View Results
+
+- HTML report: Open `test_results/report.html` in your browser
+- Screenshots: Check the timestamped folders in `test_results/`
+- Logs: View the console output or check the log files
 
 ## CI/CD Pipeline
 
-The project uses GitHub Actions for continuous integration. The workflow:
-1. Runs on push to main branch and pull requests
-2. Sets up Python environment
-3. Installs dependencies
-4. Runs test suite
-5. Generates and uploads test reports
+The project includes a GitHub Actions workflow that:
+1. Runs tests on every push and pull request
+2. Generates and uploads test reports as artifacts
+3. Creates releases when tags are pushed
+
+### Creating a Release
+
+1. Create and push a new tag:
+   ```bash
+   git tag v1.0.0
+   git push origin v1.0.0
+   ```
+
+2. The workflow will automatically create a release with the test results
+
+## Test Cases
+
+The project includes the following test cases for Amazon:
+1. Homepage verification
+2. Product search functionality
+3. Add to cart functionality
+4. Sign-in button verification
+5. Department navigation
 
 ## Contributing
 
 1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+2. Create a new branch for your feature
+3. Make your changes
+4. Run tests locally
+5. Create a pull request
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details. 
+MIT License 
