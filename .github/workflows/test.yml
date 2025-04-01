@@ -27,4 +27,4 @@ jobs:
           pip install pytest selenium webdriver-manager
 
       - name: Run Selenium Tests
-        run: pytest test_airbnb.py
+        run: pytest test_airbnb_search.py
